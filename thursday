@@ -1,0 +1,23 @@
+---
+- hosts: java
+  tasks:
+    - name: install nginx
+      apt: name=nginx state=latest
+    - name: copy source code to nginx
+      copy: content="this is my practice session"  dest=/var/www/html/index.nginx-debian.html
+      notify:
+         - restart nginx
+    - name: ensure nginx started
+      service: name=nginx state=started
+
+
+- hosts: .net
+  tasks:
+    - name: install nginx
+      apt: name=nginx state=latest
+    - name: copy source code to nginx
+      copy: content="hello iam from hyd"  dest=/var/www/html/index.nginx-debian.html
+      notify:
+         - restart nginx
+    - name: ensure nginx started
+      service: name=nginx state=started
